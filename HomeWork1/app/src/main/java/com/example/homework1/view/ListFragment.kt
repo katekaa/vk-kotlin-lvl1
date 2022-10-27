@@ -44,10 +44,6 @@ class ListFragment : Fragment() {
         val fab = binding.floatingActionButton
 
         recycler.addOnScrollListener(object : RecyclerView.OnScrollListener() {
-            override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
-                super.onScrollStateChanged(recyclerView, newState)
-            }
-
             override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
                 if (dy < 0) {
                     fab.hide();
@@ -55,7 +51,6 @@ class ListFragment : Fragment() {
                     fab.show();
                 }
             }
-
         })
 
         val adapter = ItemListAdapter()
@@ -64,14 +59,11 @@ class ListFragment : Fragment() {
 
         binding.floatingActionButton.setOnClickListener {
             viewModel.addElem(0)
-
             viewModel.list.value?.let { it1 ->
-                viewModel.saveCurrentList(it1)
                 recycler.scrollToPosition(it1.size - 1)
             }
             adapter.notifyDataSetChanged()
         }
-
         return binding.root
     }
 
