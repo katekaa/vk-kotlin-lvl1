@@ -11,10 +11,6 @@ class ItemViewModel(
     private val state: SavedStateHandle
 ) : ViewModel() {
 
-    companion object {
-        private const val ITEMS_LIST = "itemsList"
-    }
-
     private var _list: MutableLiveData<MutableList<Int>> = state.getLiveData(ITEMS_LIST)
     val list: LiveData<MutableList<Int>>
         get() = _list
@@ -34,5 +30,9 @@ class ItemViewModel(
 
     private fun saveCurrentList() {
         state[ITEMS_LIST] = _list.value
+    }
+
+    companion object {
+        private const val ITEMS_LIST = "itemsList"
     }
 }

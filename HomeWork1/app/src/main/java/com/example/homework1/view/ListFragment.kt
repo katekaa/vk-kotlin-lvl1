@@ -13,7 +13,7 @@ import com.example.homework1.App.Companion.appContext
 import com.example.homework1.ItemListAdapter
 import com.example.homework1.databinding.FragmentListBinding
 import com.example.homework1.model.ResourcesProvider
-import com.example.homework1.viewmodel.ItemViewModel;
+import com.example.homework1.viewmodel.ItemViewModel
 import com.example.homework1.viewmodel.ItemViewModelFactory
 
 class ListFragment : Fragment() {
@@ -46,9 +46,9 @@ class ListFragment : Fragment() {
         recycler.addOnScrollListener(object : RecyclerView.OnScrollListener() {
             override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
                 if (dy < 0) {
-                    fab.hide();
+                    fab.hide()
                 } else if (dy > 0) {
-                    fab.show();
+                    fab.show()
                 }
             }
         })
@@ -61,8 +61,8 @@ class ListFragment : Fragment() {
             viewModel.addElem(0)
             viewModel.list.value?.let { it1 ->
                 recycler.scrollToPosition(it1.size - 1)
+                adapter.notifyItemInserted(it1.size -1)
             }
-            adapter.notifyDataSetChanged()
         }
         return binding.root
     }
