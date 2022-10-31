@@ -13,7 +13,7 @@ import com.example.homework1.App.Companion.appContext
 import com.example.homework1.ItemListAdapter
 import com.example.homework1.databinding.FragmentListBinding
 import com.example.homework1.model.ResourcesProvider
-import com.example.homework1.viewmodel.ItemViewModel;
+import com.example.homework1.viewmodel.ItemViewModel
 import com.example.homework1.viewmodel.ItemViewModelFactory
 
 class ListFragment : Fragment() {
@@ -44,18 +44,13 @@ class ListFragment : Fragment() {
         val fab = binding.floatingActionButton
 
         recycler.addOnScrollListener(object : RecyclerView.OnScrollListener() {
-            override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
-                super.onScrollStateChanged(recyclerView, newState)
-            }
-
             override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
                 if (dy < 0) {
-                    fab.hide();
+                    fab.hide()
                 } else if (dy > 0) {
-                    fab.show();
+                    fab.show()
                 }
             }
-
         })
 
         val adapter = ItemListAdapter()
@@ -64,14 +59,11 @@ class ListFragment : Fragment() {
 
         binding.floatingActionButton.setOnClickListener {
             viewModel.addElem(0)
-
             viewModel.list.value?.let { it1 ->
-                viewModel.saveCurrentList(it1)
                 recycler.scrollToPosition(it1.size - 1)
+                adapter.notifyItemInserted(it1.size -1)
             }
-            adapter.notifyDataSetChanged()
         }
-
         return binding.root
     }
 
