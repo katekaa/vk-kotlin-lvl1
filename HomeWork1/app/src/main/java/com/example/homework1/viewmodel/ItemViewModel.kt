@@ -4,10 +4,8 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
-import com.example.homework1.model.ResourcesProvider
 
 class ItemViewModel(
-    private val resourceProvider: ResourcesProvider,
     private val state: SavedStateHandle
 ) : ViewModel() {
 
@@ -20,7 +18,7 @@ class ItemViewModel(
     }
 
     private fun getItems() {
-        _list.value = resourceProvider.itemsList.toMutableList()
+        _list.value = mutableListOf()
     }
 
     fun addElem(elem: Int) {
