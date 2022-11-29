@@ -8,9 +8,7 @@ import androidx.paging.LoadStateAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.homework2.databinding.BeerLoadStateBinding
 
-typealias TryAgain = () -> Unit
-
-class BeerLoadStateAdapter(private val tryAgain: TryAgain) :
+class BeerLoadStateAdapter(private val tryAgain: () -> Unit) :
     LoadStateAdapter<BeerLoadStateAdapter.Holder>() {
 
     override fun onBindViewHolder(holder: Holder, loadState: LoadState) {
@@ -23,7 +21,7 @@ class BeerLoadStateAdapter(private val tryAgain: TryAgain) :
         return Holder(binding,  tryAgain)
     }
 
-    class Holder(private val binding: BeerLoadStateBinding, private val tryAgain: TryAgain) :
+    class Holder(private val binding: BeerLoadStateBinding, private val tryAgain: () -> Unit) :
         RecyclerView.ViewHolder(binding.root) {
 
             init {

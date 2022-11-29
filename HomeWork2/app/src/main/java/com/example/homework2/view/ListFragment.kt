@@ -41,7 +41,7 @@ class ListFragment : Fragment() {
 
         val adapter = BeerAdapter()
 
-        val tryAgain: TryAgain = { adapter.retry() }
+        val tryAgain: () -> Unit = { adapter.retry() }
         val footer = BeerLoadStateAdapter(tryAgain)
         binding.retryButton.setOnClickListener { adapter.retry() }
 

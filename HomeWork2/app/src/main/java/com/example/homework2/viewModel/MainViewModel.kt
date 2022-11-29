@@ -13,13 +13,7 @@ import kotlinx.coroutines.flow.map
 
 class MainViewModel(private val repo: BeerRepository): ViewModel() {
 
-    val beerFlow: Flow<PagingData<Beer>>
-
-
-    init {
-        beerFlow = repo.getPagedBeers().map { it -> it.map { it.toBeer() } }.cachedIn(viewModelScope)
+    val beerFlow: Flow<PagingData<Beer>> by lazy {
+        repo.getPagedBeers().map { it -> it.map { it.toBeer() } }.cachedIn(viewModelScope)
     }
-
-
-
 }

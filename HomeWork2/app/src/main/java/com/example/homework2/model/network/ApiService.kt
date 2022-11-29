@@ -9,7 +9,6 @@ import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.GET
 import retrofit2.http.Query
 
-private const val BASE_URL = "https://api.punkapi.com/v2/"
 
 interface ApiService {
     @GET("beers")
@@ -19,6 +18,8 @@ interface ApiService {
     ): List<BeerDT>
 
     companion object{
+        private const val BASE_URL = "https://api.punkapi.com/v2/"
+
         fun create(): ApiService {
             val interceptor = HttpLoggingInterceptor().apply {
                 level = HttpLoggingInterceptor.Level.BODY
