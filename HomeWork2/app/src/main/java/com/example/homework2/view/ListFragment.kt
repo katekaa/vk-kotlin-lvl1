@@ -61,7 +61,7 @@ class ListFragment : Fragment() {
     private fun observeLoadState(adapter: BeerAdapter) {
         lifecycleScope.launch {
             adapter.loadStateFlow.collectLatest { it ->
-                binding.recyclerView.isVisible = it.source.refresh is LoadState.NotLoading
+                binding.recyclerView.isVisible = it.refresh is LoadState.NotLoading
                 binding.progressBar.isVisible = it.refresh is LoadState.Loading
                 binding.retryButton.isVisible =
                     it.refresh is LoadState.Error && adapter.itemCount == 0
