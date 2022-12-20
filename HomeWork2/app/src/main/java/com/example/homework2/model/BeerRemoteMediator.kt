@@ -1,5 +1,6 @@
 package com.example.homework2.model
 
+import android.util.Log
 import androidx.paging.ExperimentalPagingApi
 import androidx.paging.LoadType
 import androidx.paging.PagingState
@@ -22,10 +23,13 @@ class BeerRemoteMediator (
         pageIndex = getPageIndex(loadType) ?: return MediatorResult.Success(endOfPaginationReached = true)
         return try {
             val beers = beerApi.getBeersList(pageIndex, state.config.pageSize).map { it.toBeerRoomEntity() }
+            Log.d("test", "list: $beers size: ${beers.size}")
             if (loadType == LoadType.REFRESH) {
                 beerDao.refresh(beers)
+                Log.d("test", "in refresh")
             } else {
                 beerDao.insertAll(beers)
+                Log.d("test", "else")
             }
             MediatorResult.Success(endOfPaginationReached = beers.size < state.config.pageSize)
         } catch (e: Exception) {
