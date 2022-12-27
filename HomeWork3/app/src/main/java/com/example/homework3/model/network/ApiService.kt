@@ -26,7 +26,7 @@ interface ApiService {
 
     companion object {
 
-        private const val API_KEY = "Bearer " + "490|ZjEtkOJDBiW5dnoafTcZhLucIyTMUZBJAZjuV49q"
+        private const val API_KEY = "Bearer " + "493|OE2w9mDuEuDay8EvvIW2AtvKTsdE9alkovLvGnc8"
         private const val BASE_URL = "https://zylalabs.com/api/392/exercise+database+api/"
 
         fun create(): ApiService {

@@ -65,6 +65,7 @@ class CalendarFragment : Fragment(), CalenderAdapter.OnItemListener {
         val adapter = CalenderAdapter(daysInMonth, this)
         calendarRecycler.layoutManager = GridLayoutManager(requireContext(), 7)
         calendarRecycler.adapter = adapter
+        setTrainingEventAdapter()
     }
 
 

@@ -88,9 +88,12 @@ class TrainingsViewModel(private val trainingEventDao: TrainingEventDao) : ViewM
 
     private fun setExercises(exercises: List<Exercise>) {
         for (t in trainings.value!!) {
-            val filtered: List<Exercise> = exercises.filter { it.target == t.name }
-            val mapped = filtered.map { mapColor(it, t.color) }
-            t.adapter.setData(mapped)
+            val mapped = exercises.map { mapColor(it, t.color) }
+            _exercises.value = mapped
+            val filtered = mapped.filter { it.target == t.name }
+//            val filtered: List<Exercise> = exercises.filter { it.target == t.name }
+//            val mapped = filtered.map { mapColor(it, t.color) }
+            t.adapter.setData(filtered)
         }
     }
 
